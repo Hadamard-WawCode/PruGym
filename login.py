@@ -14,29 +14,34 @@ def verify(stored_password, provided_password):
     return pwdhash == stored_password
 
 def createdb():
-    db = sqlite3.connect("users.db")
+    db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS users(name TEXT,password TEXT)''')
     db.commit()
     db.close()
 
 def insertuser(username, hash):
-    db = sqlite3.connect("users.db")
+    db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     cursor.execute('''INSERT INTO users(name,password) VALUES(?,?)''', (username,hash))
     db.commit()
     db.close()
 
 def signin(user, passwd):
-    passwdhash=hash(passwd)
-    insertuser(user,passwdhash)
-    print("Succesfully created user")
+    try:
+        passwdhash=hash(passwd)
+        insertuser(user,passwdhash)
+    except:
+        return False
+    return True
 
-def loginuser(user,passwd):
-    db = sqlite3.connect("users.db")
+def login(user, passwd):
+    db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     cursor.execute('''SELECT password FROM users WHERE name=?''', (user,))
     users = cursor.fetchone()
+    if users == None:
+        return False
     user1=users[0]
     db.commit()
     db.close()
