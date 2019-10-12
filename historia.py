@@ -36,11 +36,6 @@ def inserttraining(username,type):
     db.commit()
     db.close()
 
-insertactivity("Adam", 35, 10000, "swim")
-insertactivity("Adam", 35, 10000, "run")
-insertactivity("Adam", 35, 10000, "bike")
-inserttraining("Adam","begginer")
-
 def selectbestpacesql(username,type):
     zm = "SELECT MIN(pace) FROM "+username+" WHERE type='"+type+"'"
     return zm
@@ -70,6 +65,3 @@ def selectbest(username, type, which):
     db.commit()
     db.close()
     return ret0
-print(selectbest("Adam","swim", "time"))
-print(selectbest("Adam","run", "distance"))
-print(selectbest("Adam","bike", "pace"))
