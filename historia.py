@@ -38,6 +38,7 @@ def inserttraining(username,type):
 
 insertactivity("Adam", 35, 10000, "swim")
 insertactivity("Adam", 35, 10000, "run")
+insertactivity("Adam", 35, 10000, "bike")
 inserttraining("Adam","begginer")
 
 def selectbestpacesql(username,type):
@@ -48,7 +49,7 @@ def selectbestdistancesql(username,type):
     zm = "SELECT MAX(distance) FROM "+username+" WHERE type='"+type+"'"
     return zm
 
-def selectbesttimeesql(username,type):
+def selectbesttimesql(username,type):
     zm = "SELECT MAX(time) FROM "+username+" WHERE type='"+type+"'"
     return zm
 
@@ -69,3 +70,6 @@ def selectbest(username, type, which):
     db.commit()
     db.close()
     return ret0
+print(selectbest("Adam","swim", "time"))
+print(selectbest("Adam","run", "distance"))
+print(selectbest("Adam","bike", "pace"))
