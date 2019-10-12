@@ -2,10 +2,45 @@ var mymap = L.map('mapid')
 var mylat;
 var mylng;
 
+<<<<<<< HEAD:static/js/map.js
 var dumbbell = L.icon({
     iconUrl: 'static/pics/gym_icon.svg',
     iconSize: [38, 40],
     iconAnchor: [0, 0],
+=======
+var gym = L.icon({
+    iconUrl: 'pic/gym.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var person = L.icon({
+    iconUrl: 'pic/person.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var bike = L.icon({
+    iconUrl: 'pic/bike.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var swim = L.icon({
+    iconUrl: 'pic/swim.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var forest = L.icon({
+    iconUrl: 'pic/forest.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+>>>>>>> origin/master:templates/script.js
     popupAnchor: [0, 0],
 });
 
@@ -22,8 +57,12 @@ navigator.geolocation.getCurrentPosition(function(position) {
         id: 'mapbox.streets',
     }).addTo(mymap);
 
-    var marker = L.marker([mylat, mylng], {icon: dumbbell}).bindPopup("Tu jesteś").addTo(mymap);
+    var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
 });
+
+function addMarker(type, dist, lat, lng, desc) {
+    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc.concat("\nOdległość: ", dist)).addTo(mymap);
+}
 
 function myView() {
     /*
@@ -33,5 +72,6 @@ function myView() {
     */
     
     mymap.panTo([mylat, mylng]);
-    // mymap.setZoom(16);  
+    mymap.setZoom(16);  
 }
+
