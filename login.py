@@ -27,7 +27,7 @@ def insertuser(username, hash):
     db.commit()
     db.close()
 
-def signin(user, passwd):
+def signup_f(user, passwd):
     try:
         passwdhash=hash(passwd)
         insertuser(user,passwdhash)
@@ -35,7 +35,7 @@ def signin(user, passwd):
         return False
     return True
 
-def login(user, passwd):
+def login_f(user, passwd):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     cursor.execute('''SELECT password FROM users WHERE name=?''', (user,))
