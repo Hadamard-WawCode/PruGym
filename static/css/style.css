@@ -14,3 +14,9 @@ overflow:hidden;
 height: auto;
 min-height:0px !important;    
 }
+
+/* navbar */
+.navbar-dark {
+    background-color: rgb(90, 0 202) !important;   
+    border-color: #E7E7E7;
+}

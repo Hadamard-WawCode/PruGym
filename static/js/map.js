@@ -46,7 +46,6 @@ var pitch = L.icon({
 });
 
 //Wypisywanie obiektow
-console.log(objects);
 
 for(var i = 0; i < objects.length; i++) {
     var obj = objects[i];
