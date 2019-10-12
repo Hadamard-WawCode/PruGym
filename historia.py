@@ -36,10 +36,6 @@ def inserttraining(username,type):
     db.commit()
     db.close()
 
-insertactivity("Adam", 35, 10000, "swim")
-insertactivity("Adam", 35, 10000, "run")
-inserttraining("Adam","begginer")
-
 def selectbestpacesql(username,type):
     zm = "SELECT MIN(pace) FROM "+username+" WHERE type='"+type+"'"
     return zm
@@ -48,7 +44,7 @@ def selectbestdistancesql(username,type):
     zm = "SELECT MAX(distance) FROM "+username+" WHERE type='"+type+"'"
     return zm
 
-def selectbesttimeesql(username,type):
+def selectbesttimesql(username,type):
     zm = "SELECT MAX(time) FROM "+username+" WHERE type='"+type+"'"
     return zm
 
