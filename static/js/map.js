@@ -3,12 +3,6 @@ var mylat;
 var mylng;
 var myMarkers = L.layerGroup();
 
-<<<<<<< HEAD:static/js/map.js
-var dumbbell = L.icon({
-    iconUrl: 'static/pics/gym_icon.svg',
-    iconSize: [38, 40],
-    iconAnchor: [0, 0],
-=======
 var gym = L.icon({
     iconUrl: 'pic/gym.svg',
     iconSize: [20, 40],
@@ -41,7 +35,6 @@ var forest = L.icon({
     iconUrl: 'pic/forest.svg',
     iconSize: [20, 40],
     iconAnchor: [10, 0],
->>>>>>> origin/master:templates/script.js
     popupAnchor: [0, 0],
 });
 
