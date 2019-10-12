@@ -31,7 +31,7 @@ body,h1,h2,h3,h4,h5 {
 }
 
 .button{
-    z-index: 2;
+    z-index: 999;
     background-color: rgb(58, 70, 62);
     border: none;
     color: white;
