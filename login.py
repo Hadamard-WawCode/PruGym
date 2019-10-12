@@ -36,7 +36,7 @@ def createuserdb(username):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     sql=createsql(username)
-    cursor.execute(sql, (username,hash))
+    cursor.execute(sql)
     db.commit()
     db.close()
 
