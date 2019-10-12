@@ -22,13 +22,13 @@ def index():
     if request.method == 'POST':
         username = request.form['user']
         password = request.form['password']
-        if login(username, password)
+        if login(username, password):
             session['username'] = username
             session['password'] = password
             return redirect(url_for('index'))
         else:
         	#zły login lub hasło
-            return render_template('login.html')
+            return render_template('login.html',)
 
     return render_template('login.html')
 
