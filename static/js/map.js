@@ -45,34 +45,61 @@ var pitch = L.icon({
     popupAnchor: [0, 0],
 });
 
-//Wypisywanie obiektow
 
-for(var i = 0; i < objects.length; i++) {
-    var obj = objects[i];
-    var type = obj[0];
-    var name = obj[1];
-    var lat = obj[4];
-    var lng = obj[5];
-    var desc = "aa";
-    switch (type) {
-        case 'Siłownia':
-            addMarker(gym, lat, lng, desc)
-            break;
-        case 'Boisko':
-            addMarker(pitch, lat, lng, desc)
-            break;
-        case 'Rowery':
-            addMarker(bike, lat, lng, desc)
-            break;
-        case 'Basen':
-            addMarker(swim, lat, lng, desc)
-            break;
-        default:
-            addMarker(gym, lat, lng, desc)
-            break;
-    }
-    myMarkers.addTo(mymap);
-}   
+
+//Filtry
+L.easyButton('fas fa-dumbbell', function(button, map){show('Siłownia')} ).addTo(mymap);
+L.easyButton('fas fa-futbol', function(button, map){show('Boisko')} ).addTo(mymap);
+L.easyButton('fas fa-swimmer', function(button, map){show('Basen')} ).addTo(mymap);
+L.easyButton('fas fa-bicycle', function(button, map){show('Rowery')} ).addTo(mymap);
+L.easyButton('fas fa-tree', function(button, map){show('Park')} ).addTo(mymap);
+L.easyButton('fas fa-redo', function(button, map){show(null)} ).addTo(mymap);
+L.easyButton('fas fa-male', function(button, map){myView()} ).addTo(mymap);
+
+
+//Wypisywanie obiektow
+function show(filter){
+        mymap.removeLayer(myMarkers);
+        myMarkers = L.layerGroup();
+        for(var i = 0; i < objects.length; i++) {
+            var obj = objects[i];
+            var type = obj[0];
+
+            if(filter != null && type != filter){
+                continue;
+            } else{
+                var name = obj[1];
+                var lat = obj[4];
+                var lng = obj[5];
+                var desc = "aa";
+                switch (type) {
+                    case 'Siłownia':
+                        addMarker(gym, lat, lng, desc)
+                        break;
+                    case 'Boisko':
+                        addMarker(pitch, lat, lng, desc)
+                        break;
+                    case 'Rowery':
+                        addMarker(bike, lat, lng, desc)
+                        break;
+                    case 'Basen':
+                        addMarker(swim, lat, lng, desc)
+                        break;
+                    case 'Park':
+                        addMarker(forest, lat, lng, desc)
+                        break;
+                    default:
+                        addMarker(gym, lat, lng, desc)
+                        break;
+            }  
+        }
+             
+    } 
+    myMarkers.addTo(mymap);  
+}
+
+show(null);
+
 
 navigator.geolocation.getCurrentPosition(function(position) {
 

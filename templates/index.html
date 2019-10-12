@@ -30,6 +30,9 @@
 
    <!-- Fa-Fa -->
   <script src="https://kit.fontawesome.com/301b488078.js" crossorigin="anonymous"></script>
+   <!-- Easy-Button -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
   <script type="text/javascript">
     var objects = {{ obiekty|tojson }};
   </script>
@@ -58,16 +61,7 @@
   </nav>
 
   <!-- Map -->
-  <div class="container-fluid" id="mapid" style="min-height:650px">
-      <!-- Filter -->
-    <div class="leaflet-bottom leaflet-left">
-      <button class="btn-primary"><i class="fas fa-dumbbell"></i></button>
-      <button class="btn-primary"><i class="fas fa-futbol"></i></button>
-      <button class="btn-primary"><i class="fas fa-swimmer"></i></button>
-      <button class="btn-primary"><i class="fas fa-bicycle"></i></button>
-      <button class="btn-primary"><i class="fas fa-tree"></i></button>
-    </div>
-  </div>
+  <div class="container-fluid" id="mapid" style="min-height:650px"></div>
 
   
   
