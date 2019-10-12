@@ -1,0 +1,68 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body,h1,h2,h3,h4,h5 {
+    font-family: "Raleway", sans-serif;
+}
+
+.w3-third img{
+    margin-bottom: -6px; opacity: 0.8; cursor: pointer;
+}
+
+.w3-third img:hover{
+    opacity: 1;
+}
+
+#mapid{
+    height: 600px;
+    z-index: 1;
+}
+
+#mySidebar{
+    z-index: 100;
+    width: 300px;
+    font-weight: bold;
+}
+
+#topMenu{
+    z-index: 2;
+    position: sticky;
+}
+
+.button{
+    z-index: 50;
+    background-color: rgb(58, 70, 62);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.locButton{
+    position: absolute;
+    z-index: 50;
+    bottom: 0;
+    left: 0;
+    top: 500px;
+    left: 20px;
+    z-index: 5;
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(58, 70, 62);
+}
+
+.locButton:hover{
+    position: absolute;
+    z-index: 50;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(58, 70, 62);
+    color: white;
+}
