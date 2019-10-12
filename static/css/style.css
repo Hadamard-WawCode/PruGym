@@ -1,0 +1,16 @@
+#mapid { 
+	z-index: 50;
+	height: 500px; 
+	width: 500px;
+}
+
+.container-fluid {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+max-width: 900px;
+overflow:hidden;
+height: auto;
+min-height:0px !important;    
+}
