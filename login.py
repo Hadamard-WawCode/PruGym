@@ -29,7 +29,6 @@ def insertuser(username, hash):
 
 def createsql(username):
     zm = "CREATE TABLE IF NOT EXISTS "+username+"(activity TEXT,time INTEGER, calories INTEGER, type TEXT, pace REAL)"
-    print(zm)
     return zm
 
 def createuserdb(username):
