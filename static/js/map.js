@@ -4,39 +4,78 @@ var mylng;
 var myMarkers = L.layerGroup();
 
 var gym = L.icon({
-    iconUrl: 'pic/gym.svg',
+    iconUrl: 'static/pics/gym.svg',
     iconSize: [20, 40],
     iconAnchor: [10, 0],
     popupAnchor: [0, 0],
 });
 
 var person = L.icon({
-    iconUrl: 'pic/person.svg',
+    iconUrl: 'static/pics/person.svg',
     iconSize: [20, 40],
     iconAnchor: [10, 0],
     popupAnchor: [0, 0],
 });
 
 var bike = L.icon({
-    iconUrl: 'pic/bike.svg',
+    iconUrl: 'static/pics/bike.svg',
     iconSize: [20, 40],
     iconAnchor: [10, 0],
     popupAnchor: [0, 0],
 });
 
 var swim = L.icon({
-    iconUrl: 'pic/swim.svg',
+    iconUrl: 'static/pics/swim.svg',
     iconSize: [20, 40],
     iconAnchor: [10, 0],
     popupAnchor: [0, 0],
 });
 
 var forest = L.icon({
-    iconUrl: 'pic/forest.svg',
+    iconUrl: 'static/pics/forest.svg',
     iconSize: [20, 40],
     iconAnchor: [10, 0],
     popupAnchor: [0, 0],
 });
+
+var pitch = L.icon({
+    iconUrl: 'static/pics/pitch.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+//Wypisywanie obiektow
+console.log(objects);
+for (var obj in objects) {
+    var type = obj[0];
+    var name = obj[1];
+    var lat = obj[4];
+    var lon = obj[5];
+
+    switch (type) {
+        case 'Siłownia':
+            var icon = gym;
+            break;
+        case 'Boisko':
+            var icon = pitch;
+            break;
+        case 'Rowery':
+            var icon = bike;
+            break;
+        case 'Basen':
+            var icon = swim;
+            break;
+        default:
+            var icon = gym;
+            break;
+    }
+
+    
+
+
+    
+}   
 
 navigator.geolocation.getCurrentPosition(function(position) {
 
