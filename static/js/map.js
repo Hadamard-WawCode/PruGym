@@ -47,34 +47,32 @@ var pitch = L.icon({
 
 //Wypisywanie obiektow
 console.log(objects);
-for (var obj in objects) {
+
+for(var i = 0; i < objects.length; i++) {
+    var obj = objects[i];
     var type = obj[0];
     var name = obj[1];
     var lat = obj[4];
-    var lon = obj[5];
-
+    var lng = obj[5];
+    var desc = "aa";
     switch (type) {
         case 'Siłownia':
-            var icon = gym;
+            addMarker(gym, lat, lng, desc)
             break;
         case 'Boisko':
-            var icon = pitch;
+            addMarker(pitch, lat, lng, desc)
             break;
         case 'Rowery':
-            var icon = bike;
+            addMarker(bike, lat, lng, desc)
             break;
         case 'Basen':
-            var icon = swim;
+            addMarker(swim, lat, lng, desc)
             break;
         default:
-            var icon = gym;
+            addMarker(gym, lat, lng, desc)
             break;
     }
-
-    
-
-
-    
+    myMarkers.addTo(mymap);
 }   
 
 navigator.geolocation.getCurrentPosition(function(position) {
