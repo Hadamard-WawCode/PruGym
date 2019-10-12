@@ -2,10 +2,17 @@ var mymap = L.map('mapid')
 var mylat;
 var mylng;
 
-var dumbbell = L.icon({
-    iconUrl: 'pic/dumbbell-solid.svg',
-    iconSize: [38, 40],
-    iconAnchor: [0, 0],
+var gym = L.icon({
+    iconUrl: 'pic/gym.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var person = L.icon({
+    iconUrl: 'pic/person.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
     popupAnchor: [0, 0],
 });
 
@@ -22,8 +29,10 @@ navigator.geolocation.getCurrentPosition(function(position) {
         id: 'mapbox.streets',
     }).addTo(mymap);
 
-    var marker = L.marker([mylat, mylng], {icon: dumbbell}).bindPopup("Tu jesteś").addTo(mymap);
+    var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
 });
+
+function addMarker(type, )
 
 function myView() {
     /*
@@ -33,5 +42,5 @@ function myView() {
     */
     
     mymap.panTo([mylat, mylng]);
-    // mymap.setZoom(16);  
+    mymap.setZoom(16);  
 }
