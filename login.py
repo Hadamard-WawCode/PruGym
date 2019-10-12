@@ -26,6 +26,20 @@ def insertuser(username, hash):
     cursor.execute('''INSERT INTO users(name,password) VALUES(?,?)''', (username,hash))
     db.commit()
     db.close()
+
+def createsql(username):
+    zm = "CREATE TABLE IF NOT EXISTS "+username+"(activity TEXT,time INTEGER, calories INTEGER, type TEXT, pace REAL)"
+    print(zm)
+    return zm
+
+def createuserdb(username):
+    db = sqlite3.connect("prugym.db")
+    cursor = db.cursor()
+    sql=createsql(username)
+    cursor.execute(sql)
+    db.commit()
+    db.close()
+
 def signup_f(user, passwd):
     try:
         passwdhash=hash(passwd)
