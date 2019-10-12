@@ -1,5 +1,6 @@
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
+from objects import get_all_objects
 
 app = Flask(__name__)
 app.secret_key = '9je0jaj09jk9dkakdwjnjq'
@@ -13,7 +14,7 @@ def main():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', obiekty = get_all_objects())
 
 
 @app.route('/login', methods=['GET', 'POST'])
