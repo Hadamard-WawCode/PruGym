@@ -22,7 +22,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         id: 'mapbox.streets',
     }).addTo(mymap);
 
-    var marker = L.marker([mylat, mylng], {icon: dumbbell}).addTo(mymap);
+    var marker = L.marker([mylat, mylng], {icon: dumbbell}).bindPopup("Tu jesteś").addTo(mymap);
 });
 
 function myView() {

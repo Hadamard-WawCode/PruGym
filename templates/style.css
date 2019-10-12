@@ -57,9 +57,35 @@ body,h1,h2,h3,h4,h5 {
 }
 
 .login{
+    background-color: rgb(168, 168, 168);
+    color: rgb(223, 223, 223);
     width: 500px;
     height: 400px;
-    margin-top: 200px;
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
+    padding: 100px;
+    -webkit-box-shadow: -1px -1px 9px -1px rgba(0,0,0,0.6);
+    -moz-box-shadow: -1px -1px 9px -1px rgba(0,0,0,0.6);
+    box-shadow: -1px -1px 9px -1px rgba(0,0,0,0.6);
+    border-radius: 5px;
+}
+
+input:focus{
+    -webkit-box-shadow: -1px -1px 19px -8px rgba(0,0,0,0.3);
+    -moz-box-shadow: -1px -1px 19px -8px rgba(0,0,0,0.3);
+    box-shadow: -1px -1px 19px -8px rgba(0,0,0,0.3);
+}
+
+#login{
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+}
+
+#login:hover{
+    background-color: rgb(29, 168, 29);
+    color: rgb(223, 223, 223);
 }
