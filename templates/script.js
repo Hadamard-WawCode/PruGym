@@ -16,6 +16,27 @@ var person = L.icon({
     popupAnchor: [0, 0],
 });
 
+var bike = L.icon({
+    iconUrl: 'pic/bike.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var swim = L.icon({
+    iconUrl: 'pic/swim.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
+var forest = L.icon({
+    iconUrl: 'pic/forest.svg',
+    iconSize: [20, 40],
+    iconAnchor: [10, 0],
+    popupAnchor: [0, 0],
+});
+
 navigator.geolocation.getCurrentPosition(function(position) {
 
     mylat = position.coords.latitude;
@@ -32,7 +53,9 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
 });
 
-function addMarker(type, )
+function addMarker(type, dist, lat, lng, desc) {
+    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc.concat("\nOdległość: ", dist)).addTo(mymap);
+}
 
 function myView() {
     /*
@@ -44,3 +67,4 @@ function myView() {
     mymap.panTo([mylat, mylng]);
     mymap.setZoom(16);  
 }
+
