@@ -3,7 +3,7 @@ var mylat;
 var mylng;
 
 var dumbbell = L.icon({
-    iconUrl: 'pic/dumbbell-solid.svg',
+    iconUrl: 'static/pics/gym_icon.svg',
     iconSize: [38, 40],
     iconAnchor: [0, 0],
     popupAnchor: [0, 0],
