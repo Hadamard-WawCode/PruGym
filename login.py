@@ -26,11 +26,11 @@ def insertuser(username, hash):
     cursor.execute('''INSERT INTO users(name,password) VALUES(?,?)''', (username,hash))
     db.commit()
     db.close()
-
 def signup_f(user, passwd):
     try:
         passwdhash=hash(passwd)
         insertuser(user,passwdhash)
+        createuserdb(user)
     except:
         return False
     return True
