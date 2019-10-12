@@ -1,6 +1,7 @@
 var mymap = L.map('mapid')
 var mylat;
 var mylng;
+var myMarkers = L.layerGroup();
 
 var gym = L.icon({
     iconUrl: 'pic/gym.svg',
@@ -53,17 +54,29 @@ navigator.geolocation.getCurrentPosition(function(position) {
     var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
 });
 
-function addMarker(type, dist, lat, lng, desc) {
-    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc.concat("\nOdległość: ", dist)).addTo(mymap);
+function distance(lat2, lon2, unit) {
+      var radlat1 = Math.PI * mylat/180
+      var radlat2 = Math.PI * lat2/180
+      var theta = mylng-lon2
+      var radtheta = Math.PI * theta/180
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+          dist = 1;
+      }
+      dist = Math.acos(dist)
+      dist = dist * 180/Math.PI
+      dist = dist * 60 * 1.1515
+      if (unit=="K") { dist = dist * 1.609344 }
+      if (unit=="N") { dist = dist * 0.8684 }
+      return dist
+  }
+
+function addMarker(type, lat, lng, desc) {
+    var dist = distance(lat, lng, "K");
+    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc + "\nOdległość: " + dist + "km").addTo(myMarkers);
 }
 
 function myView() {
-    /*
-    if(mylat === null or mylng === null){
-        console.log("Brak danych o lokalizacji!");
-    }
-    */
-    
     mymap.panTo([mylat, mylng]);
     mymap.setZoom(16);  
 }
