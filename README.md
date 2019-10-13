@@ -1,1 +1,1 @@
-# Wawgym
+# WawGym

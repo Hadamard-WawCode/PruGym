@@ -99,14 +99,14 @@
                     </div>
                 </div>
                 <button class="btn-primary" type="reset"  onclick="displayMenu()"   ><i class="fas fa-redo"></i></button>
-                <input class="btn-primary" type="submit" value="Dodaj"> 
+                <input class="btn-primary" type="submit" value="Dodaj">
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
+
   <section>
         <div class="container">
           <div class="row align-items-center">
@@ -130,21 +130,21 @@
                         <tbody>
                           <tr>
                             <th scope="row">Bieganie</th>
-                            <td>{{ runtime }}</td>
-                            <td>{{ rundist }}</td>
-                            <td>{{ runpace }}</td>
+                            <td>{{ sb(username,"run","time")) }}</td>
+                            <td>{{ sb(username,"run","distance")) }}</td>
+                            <td>{{ sb(username,"run","pace")) }}</td>
                           </tr>
                           <tr>
                             <th scope="row">Pływanie</th>
-                            <td>{{ swimtime }}</td>
-                            <td>{{ swimdist }}</td>
-                            <td>{{ swimpace }}</td>
+                            <td>{{ sb(username,"swim","time")) }}</td>
+                            <td>{{ sb(username,"swim","distance")) }}</td>
+                            <td>{{ sb(username,"swim","pace")) }}</td>
                           </tr>
                           <tr>
                             <th scope="row">Kolarstwo</th>
-                            <td>{{ biketime }}</td>
-                            <td>{{ bikedist }}</td>
-                            <td>{{ bikepace }}</td>
+                            <td>{{ sb(username,"run","time")) }}</td>
+                            <td>{{ sb(username,"run","distance")) }}</td>
+                            <td>{{ sb(username,"run","pace")) }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -154,7 +154,7 @@
                                 <th scope="col">Siłownia</th>
                                 <th scope="col">Trening podstawowy</th>
                                 <th scope="col">Trening średni</th>
-                                <th scope="col">Trening trudny</th> 
+                                <th scope="col">Trening trudny</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -171,7 +171,7 @@
           </div>
         </div>
       </section>
-    
+
 
 
   <!-- Footer -->
