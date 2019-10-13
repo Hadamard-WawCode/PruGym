@@ -41,6 +41,16 @@ def gym():
     else:
         return redirect(url_for('main'))
 
+@app.route('/event', methods=['GET', 'POST'])
+def event():
+    if 'username' in session:
+        obj_id = request.args.get('id')
+        if request.method == 'POST':
+            return redirect('/')
+        return render_template('event.html', username = session.get('username'))
+    else:
+        return redirect(url_for('main'))
+
 
 @app.route('/myActivity')
 def myActivity():
