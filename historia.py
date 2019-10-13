@@ -70,17 +70,17 @@ def selectbest(username, type, which):
 def counttra(username, type):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    if(type=="beginner"):
-        sql="SELECT COUNT(type) FROM "+username+" WHERE type='beginner'"
-    if(type=="semi"):
-        sql="SELECT COUNT(type) FROM "+username+"  WHERE type='semi'"
-    if(type=="pro"):
-        sql="SELECT SUM(type) FROM "+username+"  WHERE type='pro'"
+    if(type == "beginner"):
+        sql = "SELECT COUNT(type) FROM "+username+" WHERE type='beginner'"
+    if(type == "semi"):
+        sql = "SELECT COUNT(type) FROM "+username+"  WHERE type='semi'"
+    if(type == "pro"):
+        sql = "SELECT SUM(type) FROM "+username+"  WHERE type='pro'"
     cursor.execute(sql)
     ret=cursor.fetchone()
-    if(ret==None):
+    if(ret == None):
         return "No activities"
-    ret0=ret[0]
+    ret0 = ret[0]
     db.commit()
     db.close()
     return ret0
