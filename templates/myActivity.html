@@ -131,24 +131,21 @@
                         <tbody>
                           <tr>
                             <th scope="row">Bieganie</th>
-                            <td>{{ runtime }}</td>
-                            <td>{{ rundist }}</td>
-                            <td>{{ runpace }}</td>
-                            <td>{{ runcal }}</td>
+                            <td>{{ sb(username,"run","time")) }}</td>
+                            <td>{{ sb(username,"run","distance")) }}</td>
+                            <td>{{ sb(username,"run","pace")) }}</td>
                           </tr>
                           <tr>
                             <th scope="row">Pływanie</th>
-                            <td>{{ swimtime }}</td>
-                            <td>{{ swimdist }}</td>
-                            <td>{{ swimpace }}</td>
-                            <td>{{ swimcal }}</td>
+                            <td>{{ sb(username,"swim","time")) }}</td>
+                            <td>{{ sb(username,"swim","distance")) }}</td>
+                            <td>{{ sb(username,"swim","pace")) }}</td>
                           </tr>
                           <tr>
                             <th scope="row">Kolarstwo</th>
-                            <td>{{ biketime }}</td>
-                            <td>{{ bikedist }}</td>
-                            <td>{{ bikepace }}</td>
-                            <td>{{ bikecal }}</td>
+                            <td>{{ sb(username,"run","time")) }}</td>
+                            <td>{{ sb(username,"run","distance")) }}</td>
+                            <td>{{ sb(username,"run","pace")) }}</td>
                           </tr>
                         </tbody>
                       </table>
