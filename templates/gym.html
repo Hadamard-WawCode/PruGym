@@ -117,17 +117,18 @@
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 style="color: #75407a" class="display-4">Wydarzenia</h2>
-            <p>{{obiekty}}</p>
-            {{eventy}}
        <ul class="timeline">
         {% for event in eventy %}
         <li>
-          <a target="_blank" style="color: #75407a" href="https://www.totoprayogo.com/#">{{event[0]}}</a>
+          <a href="/event?" style="color: #75407a" >{{event[0]}}</a>
           <a style="color: #75407a" class="float-right">{{event[5]}}</a>
           <p>{{event[1]}}</p>
         </li>
         {% endfor %}
       </ul>
+      {%if eventy | length == 0%}
+      <h4>Brak Wydarzeń :(</h4>
+      {%endif %}
             <div class="container mt-5 mb-5">
       
 
