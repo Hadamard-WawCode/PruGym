@@ -19,10 +19,16 @@ def index():
     else:
         return redirect(url_for('login'))
 
-@app.route('/gym', methods=['GET'])
+@app.route('/gym', methods=['GET', 'POST'])
 def gym():
-    if 'username' in session and request.method == 'GET':
+    if 'username' in session:
         obj_id = request.args.get('id')
+        if request.method == 'POST':
+            eventName = request.form['nazwa']
+            eventDesc = request.form['opis']
+            eventDate = request.form['data']
+            print(eventName, eventDesc, eventDate, obj_id)
+            return redirect('/gym?id='+obj_id)
         return render_template('gym.html', obiekty = get_object(obj_id), username = session.get('username'))
     else:
         return redirect(url_for('main'))

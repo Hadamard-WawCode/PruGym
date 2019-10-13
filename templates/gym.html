@@ -75,7 +75,7 @@
             <h4>{{obiekty[1]}}</h4>
             <h5>{{obiekty[2]}} {{obiekty[3]}}</h5>
             <br/>
-            <p >{{obiekty[6]}}</p>
+            {{obiekty[6]|safe}}
           </div>
         </div>
       </div>
@@ -111,8 +111,29 @@
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 style="color: #75407a" class="display-4">Wydarzenia</h2>
-            <p>{{obiekty}}</p>
+            <p>{{obiekty[]}}</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+            <h3 style="color: #75407a" class="display-4">Dodaj Wydarzenie</h3>
+            <form enctype=multipart/form-data method="post">
+              <h6>Nazwa Wydarzenia</h6>
+              <p><input class="form-control" type="text" name="nazwa" id="nazwa" placeholder="nazwa wydarzenia" required></p>
+              <h6>Krótki Opis Wydarzenia</h6>
+              <p><input class="form-control" type="text" name="opis" id="opis" placeholder="opis wydarzenia" required></p>
+              <h6>Data Wydarzenia</h6>
+              <p><input class="form-control" type="date" name="data" id="data" required></p>
+              <p><input class="btn-primary" type="submit" value="Dodaj"></p>
+            </form>
         </div>
       </div>
     </div>
