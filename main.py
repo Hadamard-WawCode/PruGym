@@ -28,6 +28,14 @@ def gym():
         return redirect(url_for('main'))
 
 
+@app.route('/myActivity')
+def myActivity():
+    if 'username' in session:
+        return render_template('myActivity.html', username = session.get('username'))
+    else:
+        return redirect(url_for('main'))
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'username' in session:
