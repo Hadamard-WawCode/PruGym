@@ -1,11 +1,7 @@
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
-<<<<<<< HEAD
-from objects import get_all_objects, get_object
-from historia import *
-=======
 from objects import get_all_objects, get_object, addevent
->>>>>>> c326da715b27e1344bf5fde14881131adaf91b87
+from historia import *
 
 app = Flask(__name__)
 app.secret_key = '9je0jaj09jk9dkakdwjnjq'
