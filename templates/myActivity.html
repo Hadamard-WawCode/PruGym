@@ -68,17 +68,18 @@
           <div class="p-5">
             <h2 class="display-4" style="color: #75407a">Dodaj trening</h2>
             <form action="" method="post">
-                <select name="sport">
+                <select class="" name="sport">
                     <option value="swim">Pływanie</option>
                     <option value="run">Bieganie</option>
                     <option value="bike">Kolarstwo</option>
                 </select>
+                <br>
                 Odległość:
-                <input type="number" name="dist">km<br>
+                <input type="number" name="dist" min="0" max="200" step="0.01">km<br>
                 Czas:
                 <input type="time" name="time"><br>
-                <button type="reset"><i class="fas fa-redo"></i></button>
-                <input type="submit" value="Dodaj"> 
+                <button class="btn-primary" type="reset"><i class="fas fa-redo"></i></button>
+                <input class="btn-primary" type="submit" value="Dodaj"> 
             </form>
           </div>
         </div>
@@ -98,7 +99,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="{{ url_for('static',filename='js/map.js') }}"></script>
 
 </body>
 
