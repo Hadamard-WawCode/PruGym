@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, json
 
 def get_all_objects():
     db = sqlite3.connect("prugym.db")
@@ -18,18 +18,16 @@ def get_object(id):
         res = tuple(res)
     return res
 
-def add_object(typ, nazwa, adres, dzielnica, lat, lon, opis, url_zdjecia):
+def add_photos(id, url_list_zdjec):
     try:
+        url_list_zdjec = json.dumps(url_list_zdjec)
         db = sqlite3.connect("prugym.db")
         cursor = db.cursor()
-        q = f"""INSERT INTO Obiekty (Typ, Nazwa, Adres, Dzielnica, lat, lon, Opis, Zdjecie) 
-            values ('{typ}', '{nazwa}', '{adres}', '{dzielnica}', '{lat}', '{lon}', '{opis}', '{url_zdjecia}')"""
+        q = f"""INSERT INTO Obiekty (Zdjecie) WHERE id={id}
+            values ('{url_list_zdjec}')"""
         cursor.execute(q)
         db.commit()
         db.close()
     except:
         return False
     return True
-
-def add_workout():
-    pass
