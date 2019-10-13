@@ -10,11 +10,11 @@ def main():
     if 'username' in session:
         return redirect(url_for('index'))
     else:
-        return redirect(url_for('signup'))
+        return redirect(url_for('login'))
 
 @app.route('/index')
 def index():
-    return render_template('index.html', obiekty = get_all_objects())
+    return render_template('index.html', obiekty = get_all_objects(), username = session.get('username'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -50,6 +50,11 @@ def signup():
 
     return render_template('signup.html')
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    del session['username']
+    del session['password']
+    return redirect('/')
 
 if __name__=='__main__':
     app.run(debug=True)

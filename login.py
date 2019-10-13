@@ -49,6 +49,8 @@ def signup_f(user, passwd):
     return True
 
 def login_f(user, passwd):
+    if passwd == "":
+        return False
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     cursor.execute('''SELECT password FROM users WHERE name=?''', (user,))
