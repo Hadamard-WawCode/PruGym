@@ -29,9 +29,19 @@
     var objects = {{ obiekty|tojson }};
     var gym_lat = objects[4];
     var gym_lng = objects[5];
+
+    function encodeQueryData(data) {
+        const ret = [];
+          for (let d in data)
+            ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+        return ret.join('&');
+    }
+
+    function red_ev(name){  
+      window.location.href = "/event?name=" + encodeQueryData(name);
+    }
   </script>
 
-	<title></title>
 </head>
 <body>
 
@@ -85,6 +95,7 @@
             <h5>{{obiekty[2]}} {{obiekty[3]}}</h5>
             <br/>
             {{obiekty[6]|safe}}
+            {{obiekty}}
           </div>
         </div>
       </div>
@@ -123,7 +134,7 @@
        <ul class="timeline">
         {% for event in eventy %}
         <li>
-          <a href="/event?" style="color: #75407a" >{{event[0]}}</a>
+          <a href="/event?id={{event[6]}}" style="color: #75407a" >{{event[0]}}</a>
           <a style="color: #75407a" class="float-right">{{event[5]}}</a>
           <p>{{event[1]}}</p>
           ~ {{event[2]}}
