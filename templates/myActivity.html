@@ -22,11 +22,6 @@
 
    <!-- Fa-Fa -->
   <script src="https://kit.fontawesome.com/301b488078.js" crossorigin="anonymous"></script>
-  <style>
-    input[type=number] {
-        max-width: 80px;
-    }
-  </style>
 </head>
 
 <body>
@@ -66,23 +61,26 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/01.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="{{ url_for('static',filename='pics/runner.jpg') }}" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 class="display-4" style="color: #75407a">Dodaj trening</h2>
             <form action="" method="post">
-                <select class="" name="sport" required>
+                <select class="form-control" name="sport" required>
                     <option value="swim">Pływanie</option>
                     <option value="run">Bieganie</option>
                     <option value="bike">Kolarstwo</option>
                 </select>
-                <br>
-                Odległość:
-                <input type="number" name="dist" min="0" max="200" step="0.01" value="0" required>km<br>
-                Czas:
-                <input type="number" name="hours" min="0" value="0">h <input type="number" name="minutes" min="0" max="59" value="0">min<br>
+                <h7>Odległość:</h7>
+                <input class="form-control" type="number" name="dist" min="0" max="200" step="0.01" placeholder="kilometry" required>
+                <h7>Czas:</h7> 
+                <div class="form-inline">
+                    <input class="form-control mb-2" type="number" name="hours" min="0" placeholder="godziny">
+                    <input class="form-control mb-2" type="number" name="minutes" min="0" max="59" placeholder="minuty">
+                </div>
+                
                 <button class="btn-primary" type="reset"><i class="fas fa-redo"></i></button>
                 <input class="btn-primary" type="submit" value="Dodaj"> 
             </form>
@@ -91,6 +89,8 @@
       </div>
     </div>
   </section>
+  
+  <br><br><br><br><br><br><br><br>
 
 
   <!-- Footer -->
