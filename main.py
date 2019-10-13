@@ -14,7 +14,10 @@ def main():
 
 @app.route('/index')
 def index():
-    return render_template('index.html', obiekty = get_all_objects(), username = session.get('username'))
+    if 'username' in session:
+        return render_template('index.html', obiekty = get_all_objects(), username = session.get('username'))
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
