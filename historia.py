@@ -5,7 +5,7 @@ def addactivitysql(username):
     return zm
 
 def addtrainingsql(username):
-    zm = "INSERT INTO "+username+"(activity, calories, type, time) VALUES(?,?,?,?)"
+    zm = "INSERT INTO "+username+"(activity, time, calories, type) VALUES(?,?,?,?)"
     return zm
 
 def insertactivity(username, time, distance, type):
@@ -33,7 +33,7 @@ def inserttraining(username,type):
     sql=addtrainingsql(username)
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    cursor.execute(sql,(type,calories,type,1))
+    cursor.execute(sql,(type,1,calories,type))
     db.commit()
     db.close()
 
