@@ -133,6 +133,7 @@ function addMarker(type, lat, lng, id) {
 }
 
 function myView() {
-    mymap.setView([mylat, mylng], 16);
+    mymap.panTo([mylat, mylng]);
+    mymap.setZoom(16);  
 }
 
