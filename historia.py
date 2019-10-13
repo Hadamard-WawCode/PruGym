@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, json
 
 def addactivitysql(username):
     zm = "INSERT INTO "+username+"(activity, time, calories, type, distance, pace) VALUES(?,?,?,?,?,?)"
@@ -70,7 +70,20 @@ def get_stats(user):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     query = f"SELECT * FROM {user};"
-    print(query)
     res = cursor.execute(query).fetchone()
+    db.close()
+    return res
+
+def add_pictures(id, names):
+    print("TODO: update zdjęcias for ", id, names)
+    db = sqlite3.connect("prugym.db")
+    cursor = db.cursor()
+    query = f"SELECT Zdjecie FROM Obiekty WHERE id = {id};"
+    res = cursor.execute(query).fetchone()
+    newval = json.dumps((json.loads(res[0]) if res[0] else []) + names) #TODO: add insead of replacing
+    newval = newval.replace('\"', '\'')
+    query2 = f"UPDATE Obiekty SET Zdjecie = \"{newval}\" WHERE id = {id};"
+    cursor.execute(query2)
+    db.commit()
     db.close()
     return res

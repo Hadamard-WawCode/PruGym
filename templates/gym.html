@@ -66,7 +66,7 @@
       </div>
     </div>
   </nav>
- 
+
   <section>
     <div class="container">
       <div class="row align-items-center">
@@ -162,6 +162,24 @@
   <br/>
   <br/>
 
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+            <h3 style="color: #75407a" class="display-4">Dodaj zdjęcie</h3>
+            <form enctype=multipart/form-data method="post" action="/addPic">
+              <input type="file" name="pic1" class="btn-light" /><br>
+              <input type="file" name="pic2" class="btn-light" /><br>
+              <input type="file" name="pic3" class="btn-light" /><br>
+              <input type="hidden" name="num" value="{{num}}" />
+              <p><input class="btn-primary" type="submit" value="Dodaj"></p>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
