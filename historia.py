@@ -5,7 +5,7 @@ def addactivitysql(username):
     return zm
 
 def addtrainingsql(username):
-    zm = "INSERT INTO "+username+"(activity, calories, type) VALUES(?,?,?)"
+    zm = "INSERT INTO "+username+"(activity, calories, type, time) VALUES(?,?,?,?)"
     return zm
 
 def insertactivity(username, time, distance, type):
@@ -33,7 +33,7 @@ def inserttraining(username,type):
     sql=addtrainingsql(username)
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    cursor.execute(sql,(type,calories,type))
+    cursor.execute(sql,(type,calories,type,1))
     db.commit()
     db.close()
 
@@ -66,6 +66,24 @@ def selectbest(username, type, which):
     db.commit()
     db.close()
     return ret0
+
+def counttra(username, type):
+    db = sqlite3.connect("prugym.db")
+    cursor = db.cursor()
+    if(type=="beginner"):
+        sql="SELECT SUM(time) WHERE type='beginner'"
+    if(type=="semi"):
+        sql="SELECT SUM(time) WHERE type='semi'"
+    if(type=="pro"):
+        sql="SELECT SUM(time) WHERE type='pro'"
+    cursor.execute(sql)
+    ret=cursor.fetchone()
+    if(ret==None):
+        return "No activities"
+    ret0=ret[0]
+    return ret0
+    db.commit()
+    db.close()
 
 def get_stats(user):
     db = sqlite3.connect("prugym.db")
