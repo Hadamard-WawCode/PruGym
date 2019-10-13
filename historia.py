@@ -9,6 +9,8 @@ def addtrainingsql(username):
     return zm
 
 def insertactivity(username, time, distance, type):
+    print('?!!!!!!!!!!!!!', username, time, distance, type)
+    distance = float(distance)
     if(type=="swim"):
         calories=distance*0.2
         pace=time*100/distance
@@ -18,7 +20,7 @@ def insertactivity(username, time, distance, type):
     sql=addactivitysql(username)
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    cursor.execute(sql,(type,time,calories,type,distance,pace))
+    cursor.execute(sql,(type,time,calories,type,float(distance),pace))
     db.commit()
     db.close()
 
