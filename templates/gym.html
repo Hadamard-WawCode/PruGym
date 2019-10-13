@@ -40,6 +40,9 @@
     function red_ev(name){  
       window.location.href = "/event?name=" + encodeQueryData(name);
     }
+
+    console.log(objects[7]);
+    console.log(JSON.parse(objects[7]))
   </script>
 
 </head>
@@ -85,7 +88,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="{{obiekty[7][0]}}" alt="">
+            <img id="img1" class="img-fluid rounded-circle" src="" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
@@ -107,7 +110,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="{{obiekty[7][1]}}" alt="">
+            <img id="img2" class="img-fluid rounded-circle" src="" alt="">
           </div>
         </div>
         <div class="col-lg-6">
@@ -125,7 +128,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="{{obiekty[7][2]}}" alt="">
+            <img id="img3" class="img-fluid rounded-circle" src="" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">

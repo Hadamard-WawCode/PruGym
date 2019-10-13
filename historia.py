@@ -67,6 +67,24 @@ def selectbest(username, type, which):
     db.close()
     return ret0
 
+def counttra(username, type):
+    db = sqlite3.connect("prugym.db")
+    cursor = db.cursor()
+    if(type=="beginner"):
+        sql="SELECT SUM(time) WHERE type='beginner'"
+    if(type=="semi"):
+        sql="SELECT SUM(time) WHERE type='semi'"
+    if(type=="pro"):
+        sql="SELECT SUM(time) WHERE type='pro'"
+    cursor.execute(sql)
+    ret=cursor.fetchone()
+    if(ret==None):
+        return "No activities"
+    ret0=ret[0]
+    return ret0
+    db.commit()
+    db.close()
+
 def get_stats(user):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
