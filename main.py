@@ -60,13 +60,6 @@ def login():
 
     return render_template('login.html', info = "")
 
-@app.route('/stats')
-def stats():
-    if 'username' in session:
-        return render_template('stats.html', username = session.get('username'), stats=get_stats(session.get('username')))
-    else:
-        return redirect(url_for('main'))
-
 @app.route('/addPic')
 def addPic():
     if 'username' in session:
