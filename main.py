@@ -1,7 +1,11 @@
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
+<<<<<<< HEAD
 from objects import get_all_objects, get_object
 from historia import *
+=======
+from objects import get_all_objects, get_object, addevent
+>>>>>>> c326da715b27e1344bf5fde14881131adaf91b87
 
 app = Flask(__name__)
 app.secret_key = '9je0jaj09jk9dkakdwjnjq'
@@ -29,6 +33,7 @@ def gym():
             eventDesc = request.form['opis']
             eventDate = request.form['data']
             print(eventName, eventDesc, eventDate, obj_id)
+            addevent(eventName,eventDesc,session['username'],obj_id)
             return redirect('/gym?id='+obj_id)
         return render_template('gym.html', obiekty = get_object(obj_id), username = session.get('username'))
     else:
