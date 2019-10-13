@@ -21,6 +21,13 @@ def index():
     else:
         return redirect(url_for('login'))
 
+@app.route('/train')
+def train():
+    if 'username' in session:
+        return render_template('train.html', username = session.get('username'))
+    else:
+        return redirect(url_for('login'))
+
 @app.route('/gym', methods=['GET', 'POST'])
 def gym():
     if 'username' in session:
