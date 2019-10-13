@@ -19,6 +19,9 @@
   <!-- Custom styles for this template -->
   <link href="{{ url_for('static',filename='css/one-page-wonder.min.css') }}" rel="stylesheet">
 
+  <!-- Timeline -->
+  <link href="{{ url_for('static',filename='css/gym_style.css') }}" rel="stylesheet">
+
    <!-- Fa-Fa -->
   <script src="https://kit.fontawesome.com/301b488078.js" crossorigin="anonymous"></script>
 
@@ -42,12 +45,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
 	  {% if username %}
-	  <li class="nav-item">
-      	<a class="nav-link" href="/myActivity">Moja Aktywność</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="/logout">Logout: {{ username }} </a>
-	  </li>
+	    <li class="nav-item">
+        <a class="nav-link" href="/">Mapa</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/myActivity">Moja Aktywność</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout: {{ username }} </a>
+      </li>
 	  {% else %}
           <li class="nav-item">
             <a class="nav-link" href="#">Rejestracja</a>
@@ -92,7 +98,7 @@
         </div>
         <div class="col-lg-6">
           <div class="p-5">
-            <h3 id="odleglosc" style="color: #75407a" class="display-4">Odledłość</h3>
+            <h3 id="odleglosc" style="color: #75407a" class="display-4">Odległość</h3>
             <a id="googlemaps" href="">Nawiguj w Gogle Maps</a>
           </div>
         </div>
@@ -112,6 +118,19 @@
           <div class="p-5">
             <h2 style="color: #75407a" class="display-4">Wydarzenia</h2>
             <p>{{obiekty}}</p>
+            {{eventy}}
+       <ul class="timeline">
+        {% for event in eventy %}
+        <li>
+          <a target="_blank" style="color: #75407a" href="https://www.totoprayogo.com/#">{{event[0]}}</a>
+          <a style="color: #75407a" class="float-right">{{event[5]}}</a>
+          <p>{{event[1]}}</p>
+        </li>
+        {% endfor %}
+      </ul>
+            <div class="container mt-5 mb-5">
+      
+
           </div>
         </div>
       </div>

@@ -32,20 +32,25 @@ def add_photos(id, url_list_zdjec):
         return False
     return True
 
-def addevent(nazwa,opis,user,location):
+def addevent(nazwa,opis,user,location, date):
+    location = "a" + location
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    sql="CREATE TABLE IF NOT EXISTS wydarzenia('id' INTEGER PRIMARY KEY AUTOINCREMENT,'nazwa' TEXT,'opis' TEXT,'user' TEXT,'location' TEXT, 'ilosc' INTEGER);"
+    sql="CREATE TABLE IF NOT EXISTS wydarzenia('id' INTEGER PRIMARY KEY AUTOINCREMENT,'nazwa' TEXT,'opis' TEXT,'user' TEXT,'location' TEXT, 'ilosc' INTEGER, 'data' TEXT);"
     cursor.execute(sql)
-    sql1="INSERT INTO wydarzenia(nazwa,opis,user,location) VALUES(?,?,?,?)"
-    cursor.execute(sql1, (nazwa,opis,user,location))
+    sql1="INSERT INTO wydarzenia(nazwa,opis,user,location, data) VALUES(?,?,?,?,?)"
+    cursor.execute(sql1, (nazwa,opis,user,location, date))
+    db.commit()
     cursor.execute("SELECT MAX(id) FROM wydarzenia")
     sel=cursor.fetchone()
     id=sel[0]
-    sql7="CREATE TABLE IF NOT EXISTS "+location+"('id');"
+    sql7="CREATE TABLE IF NOT EXISTS "+location+"(id INTEGER);"
+    print(sql7)
     cursor.execute(sql7)
+    db.commit()
     sql2="INSERT INTO "+user+"_events(id) VALUES(?)"
     cursor.execute(sql2,(id,))
+    db.commit()
     cursor.execute("INSERT INTO "+location+"(id) VALUES(?)", (id,))
     db.commit()
     db.close()
@@ -54,7 +59,7 @@ def addevent(nazwa,opis,user,location):
 def infowyd(numer):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    cursor.execute("SELECT name FROM wydarzenia WHERE id=(?)", (numer,))
+    cursor.execute("SELECT nazwa FROM wydarzenia WHERE id=(?)", (numer,))
     name=cursor.fetchone()[0]
     cursor.execute("SELECT opis FROM wydarzenia WHERE id=(?)", (numer,))
     opis=cursor.fetchone()[0]
@@ -64,9 +69,11 @@ def infowyd(numer):
     location=cursor.fetchone()[0]
     cursor.execute("SELECT ilosc FROM wydarzenia WHERE id=(?)", (numer,))
     ilosc=cursor.fetchone()[0]
+    cursor.execute("SELECT data FROM wydarzenia WHERE id=(?)", (numer,))
+    data=cursor.fetchone()[0]
     db.commit()
     db.close()
-    return name,opis,user,location,ilosc
+    return (name,opis,user,location,ilosc, data)
 
 def wszystkieuzyt(user):
     arr=[]
@@ -81,13 +88,17 @@ def wszystkieuzyt(user):
     return arr
 
 def wszystkieob(obiekt):
-    arr=[]
-    db = sqlite3.connect("prugym.db")
-    cursor = db.cursor()
-    cursor.execute("SELECT id FROM "+obiekt)
-    tab=cursor.fetchall()
-    for i in tab:
-        arr.append(i[0])
-    db.commit()
-    db.close()
-    return arr
+    try:
+        obiekt = "a" + obiekt
+        arr=[]
+        db = sqlite3.connect("prugym.db")
+        cursor = db.cursor()
+        cursor.execute("SELECT id FROM "+obiekt)
+        tab=cursor.fetchall()
+        for i in tab:
+            arr.append(i[0])
+        db.commit()
+        db.close()
+        return arr 
+    except:
+        return []
