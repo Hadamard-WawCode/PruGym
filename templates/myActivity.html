@@ -65,7 +65,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid" src="{{ url_for('static',filename='pics/runner.jpg') }}" alt="">
+            <img class="img-fluid" src="{{ url_for('static',filename='pics/runner2.jpg') }}" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
@@ -149,6 +149,24 @@
                           </tr>
                         </tbody>
                       </table>
+                      <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">Siłownia</th>
+                                <th scope="col">Trening podstawowy</th>
+                                <th scope="col">Trening średni</th>
+                                <th scope="col">Trening trudny</th> 
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Liczba treningów</th>
+                                <td>{{ easynum }}</td>
+                                <td>{{ midnum }}</td>
+                                <td>{{ hardnum }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
               </div>
             </div>
           </div>
