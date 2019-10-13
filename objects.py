@@ -33,19 +33,24 @@ def add_photos(id, url_list_zdjec):
     return True
 
 def addevent(nazwa,opis,user,location):
+    location = "a" + location
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     sql="CREATE TABLE IF NOT EXISTS wydarzenia('id' INTEGER PRIMARY KEY AUTOINCREMENT,'nazwa' TEXT,'opis' TEXT,'user' TEXT,'location' TEXT, 'ilosc' INTEGER);"
     cursor.execute(sql)
     sql1="INSERT INTO wydarzenia(nazwa,opis,user,location) VALUES(?,?,?,?)"
     cursor.execute(sql1, (nazwa,opis,user,location))
+    db.commit()
     cursor.execute("SELECT MAX(id) FROM wydarzenia")
     sel=cursor.fetchone()
     id=sel[0]
-    sql7="CREATE TABLE IF NOT EXISTS "+location+"('id');"
+    sql7="CREATE TABLE IF NOT EXISTS "+location+"(id INTEGER);"
+    print(sql7)
     cursor.execute(sql7)
+    db.commit()
     sql2="INSERT INTO "+user+"_events(id) VALUES(?)"
     cursor.execute(sql2,(id,))
+    db.commit()
     cursor.execute("INSERT INTO "+location+"(id) VALUES(?)", (id,))
     db.commit()
     db.close()
@@ -81,6 +86,7 @@ def wszystkieuzyt(user):
     return arr
 
 def wszystkieob(obiekt):
+    obiekt = "a" + obiekt
     arr=[]
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
