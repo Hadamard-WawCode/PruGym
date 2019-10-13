@@ -52,7 +52,6 @@ def event():
     else:
         return redirect(url_for('main'))
 
-
 @app.route('/myActivity', methods=['GET', 'POST'])
 def myActivity():
     if 'username' in session:
