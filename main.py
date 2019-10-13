@@ -38,7 +38,7 @@ def gym():
         for event_id in event_id_list:
             events.append(infowyd(event_id))
 
-        return render_template('gym.html', obiekty = get_object(obj_id), eventy=events, username = session.get('username'))
+        return render_template('gym.html', obiekty = get_object(obj_id), eventy=events, username = session.get('username'), num = obj_id)
     else:
         return redirect(url_for('main'))
 

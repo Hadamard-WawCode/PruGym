@@ -79,6 +79,7 @@ def add_pictures(id, names):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     query = f"SELECT Zdjecie FROM Obiekty WHERE id = {id};"
+    print(query)
     res = cursor.execute(query).fetchone()
     newval = json.dumps((json.loads(res[0]) if res[0] else []) + names) #TODO: add insead of replacing
     newval = newval.replace('\"', '\'')
