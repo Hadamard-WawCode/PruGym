@@ -31,3 +31,13 @@ def add_photos(id, url_list_zdjec):
     except:
         return False
     return True
+
+
+def get_stats(user):
+    db = sqlite3.connect("prugym.db")
+    cursor = db.cursor()
+    query = f"SELECT * FROM {user};"
+    print(query)
+    res = cursor.execute(query).fetchone()
+    db.close()
+    return res
