@@ -1,20 +1,18 @@
-var mylat;
-var mylng;
 
-function saveLocation(lat, lng) {
-  mylat = lat;
-  mylng = lng;
+function addCurrentLocation(lat, lng){
+    var dist = distance(lat, lng, gym_lat, gym_lng, "K");
+    document.getElementById("odleglosc").innerHTML = dist + ' od Ciebie';
+    var link = "https://www.google.com/maps/place/"+gym_lat+"+" + gym_lng;
+    document.getElementById("googlemaps").href=link; 
 }
 
-navigator.geolocation.getCurrentPosition(position => saveLocation(52.219761, 21.002734));
+navigator.geolocation.getCurrentPosition(position => addCurrentLocation(position.coords.latitude, position.coords.longitude),
+           error => addCurrentLocation(52.219761, 21.002734));
 
-console.log(mylat);
-console.log(mylng);
-
-function distance(lat2, lon2, unit) {
-      var radlat1 = Math.PI * mylat/180
+function distance(lat1, lon1, lat2, lon2, unit) {
+      var radlat1 = Math.PI * lat1/180
       var radlat2 = Math.PI * lat2/180
-      var theta = mylng-lon2
+      var theta = lon1-lon2
       var radtheta = Math.PI * theta/180
       var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
       if (dist > 1) {
@@ -34,10 +32,3 @@ function distance(lat2, lon2, unit) {
       }
       return res;
   }
-
-
-console.log(gym_lng);
-
-var dist = distance(gym_lat, gym_lng, "K");
-document.getElementById("odleglosc").innerHTML = dist;
-console.log(dist);

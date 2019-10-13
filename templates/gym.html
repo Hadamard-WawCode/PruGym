@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,17 +27,15 @@
     var gym_lat = objects[4];
     var gym_lng = objects[5];
   </script>
-=======
+
 	<title></title>
->>>>>>> origin/master
 </head>
 <body>
-<<<<<<< HEAD
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="/">Prudens Gym</a>
+      <a class="navbar-brand" href="/">WAW GYM</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -69,14 +66,14 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="{{obiekty[7]}}" alt="">
+            <img class="img-fluid rounded-circle" src="{{obiekty[7][0]}}" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
             <h2 class="display-4" style="color: #75407a">{{obiekty[0]}}</h2>
             <h4>{{obiekty[1]}}</h4>
-            <h5 style="color: #6e6e6e">{{obiekty[2]}} {{obiekty[3]}}</h5>
+            <h5>{{obiekty[2]}} {{obiekty[3]}}</h5>
             <p >{{obiekty[6]}}</p>
           </div>
         </div>
@@ -89,13 +86,13 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/02.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="{{obiekty[7][1]}}" alt="">
           </div>
         </div>
         <div class="col-lg-6">
           <div class="p-5">
-            <h2 id="odleglosc" class="display-4">We salute you!</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            <h3 id="odleglosc" class="display-4">Odledłość</h3>
+            <a id="googlemaps" href="">Nawiguj w Gogle Maps</a>
           </div>
         </div>
       </div>
@@ -107,13 +104,13 @@
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="img/03.jpg" alt="">
+            <img class="img-fluid rounded-circle" src="{{obiekty[7][2]}}" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Let there be rock!</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            <h2 class="display-4">Wydarzenia</h2>
+            <p>{{obiekty}}</p>
           </div>
         </div>
       </div>
@@ -132,9 +129,5 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="{{ url_for('static',filename='js/gym.js') }}"></script>
-
-=======
-{{obiekty}}
->>>>>>> origin/master
 </body>
 </html>
