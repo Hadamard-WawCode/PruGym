@@ -9,7 +9,6 @@ function getSelectedText(elementId) {
 
 function displayMenu(){
     var sp = getSelectedText("sport");
-    console.log(sp);
     if(sp == "Pływanie" || sp == "Bieganie" || sp == "Kolarstwo"){
         document.getElementById("distsports").style = "display: block;";
         document.getElementById("gymsports").style = "display: none;";
