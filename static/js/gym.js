@@ -32,3 +32,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
       }
       return res;
   }
+
+document.getElementById("img1").src=photos[0];
+document.getElementById("img2").src=photos[1];
+document.getElementById("img3").src=photos[2];
