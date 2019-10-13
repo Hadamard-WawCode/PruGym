@@ -71,7 +71,7 @@ def myActivity():
                     return Response("", status=500, mimetype='application/json')
                 insertactivity(session['username'], time, dist, sport)
                 return redirect(url_for('myActivity'))
-        return render_template('myActivity.html', username = session.get('username'))
+        return render_template('myActivity.html', username = session.get('username'), selectbest=sb)
     else:
         return redirect(url_for('main'))
 
