@@ -56,40 +56,38 @@ L.easyButton('fas fa-bicycle', function(button, map){show('Rowery')} ).addTo(mym
 L.easyButton('fas fa-redo', function(button, map){show(null)} ).addTo(mymap);
 L.easyButton('fas fa-male', function(button, map){myView()} ).addTo(mymap);
 
-
 //Wypisywanie obiektow
 function show(filter){
         mymap.removeLayer(myMarkers);
         myMarkers = L.layerGroup();
         for(var i = 0; i < objects.length; i++) {
             var obj = objects[i];
-            var type = obj[0];
+            var type = obj[1];
 
             if(filter != null && type != filter){
                 continue;
             } else{
-                var name = obj[1];
-                var lat = obj[4];
-                var lng = obj[5];
-                var desc = "aa";
+                var id = obj[0];
+                var lat = obj[2];
+                var lng = obj[3];
                 switch (type) {
                     case 'Siłownia':
-                        addMarker(gym, lat, lng, desc)
+                        addMarker(gym, lat, lng, id)
                         break;
                     case 'Boisko':
-                        addMarker(pitch, lat, lng, desc)
+                        addMarker(pitch, lat, lng, id)
                         break;
                     case 'Rowery':
-                        addMarker(bike, lat, lng, desc)
+                        addMarker(bike, lat, lng, id)
                         break;
                     case 'Basen':
-                        addMarker(swim, lat, lng, desc)
+                        addMarker(swim, lat, lng, id)
                         break;
                     case 'Park':
-                        addMarker(forest, lat, lng, desc)
+                        addMarker(forest, lat, lng, id)
                         break;
                     default:
-                        addMarker(gym, lat, lng, desc)
+                        addMarker(gym, lat, lng, id)
                         break;
             }  
         }
@@ -142,9 +140,23 @@ function distance(lat2, lon2, unit) {
       return res;
   }
 
-function addMarker(type, lat, lng, desc) {
+function encodeQueryData(data) {
+   const ret = [];
+   for (let d in data)
+     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+   return ret.join('&');
+}
+
+function addMarker(type, lat, lng, id) {
     var dist = distance(lat, lng, "K");
-    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc + "\nOdległość: " + dist).addTo(myMarkers);
+
+    var marker = L.marker([lat, lng], {icon: type})
+    var data = {'name' : name};
+    marker.url = '/gym?'+encodeQueryData(data);
+    marker.on('click', function(){
+        window.location = (this.url);
+    });
+    marker.addTo(myMarkers);
 }
 
 function myView() {

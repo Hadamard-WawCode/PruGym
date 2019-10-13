@@ -3,7 +3,7 @@ import sqlite3
 def get_all_objects():
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    res = cursor.execute("SELECT * FROM Obiekty").fetchall()
+    res = cursor.execute("SELECT (id, Typ, lat, lon) FROM Obiekty").fetchall()
     db.close()
     return res
 
