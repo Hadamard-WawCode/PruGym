@@ -10,7 +10,7 @@ def main():
     if 'username' in session:
         return redirect(url_for('index'))
     else:
-        return redirect(url_for('signup'))
+        return redirect(url_for('login'))
 
 @app.route('/index')
 def index():
