@@ -1,7 +1,7 @@
 import os, os.path, random, hashlib, sys, json
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
-from objects import get_all_objects, get_object, addevent, wszystkieob, infowyd
+from objects import get_all_objects, get_object, addevent, wszystkieob, infowyd, joinevent
 from historia import *
 
 app = Flask(__name__)
@@ -45,10 +45,13 @@ def gym():
 @app.route('/event', methods=['GET', 'POST'])
 def event():
     if 'username' in session:
-        obj_id = request.args.get('id')
+        event_id = request.args.get('id')
+        event_info = infowyd(event_id)
         if request.method == 'POST':
-            return redirect('/')
-        return render_template('event.html', username = session.get('username'))
+            print(joinevent(event_id))
+
+            return redirect(request.url)
+        return render_template('event.html', event=event_info, username = session.get('username'))
     else:
         return redirect(url_for('main'))
 

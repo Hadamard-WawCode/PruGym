@@ -73,7 +73,7 @@ def infowyd(numer):
     data=cursor.fetchone()[0]
     db.commit()
     db.close()
-    return (name,opis,user,location,ilosc, data)
+    return (name,opis,user,location,ilosc, data, numer)
 
 def wszystkieuzyt(user):
     arr=[]
@@ -102,3 +102,12 @@ def wszystkieob(obiekt):
         return arr 
     except:
         return []
+
+def joinevent(id):
+    try:
+        db = sqlite3.connect("prugym.db")
+        cursor = db.cursor()
+        cursor.execute(f"UPDATE wydarzenia SET ilosc = ilosc + 1 WHERE id={id}")
+        return True 
+    except:
+        return False
