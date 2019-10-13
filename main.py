@@ -1,5 +1,5 @@
 import os, os.path, random, hashlib, sys, json
-from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
+from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session, Response
 from login import signup_f, login_f
 from objects import get_all_objects, get_object, addevent, wszystkieob, infowyd, joinevent
 from historia import *
@@ -38,7 +38,7 @@ def gym():
         for event_id in event_id_list:
             events.append(infowyd(event_id))
 
-        return render_template('gym.html', obiekty = get_object(obj_id), eventy=events, username = session.get('username'))
+        return render_template('gym.html', obiekty = get_object(obj_id), eventy=events, username = session.get('username'), num = obj_id)
     else:
         return redirect(url_for('main'))
 
@@ -56,11 +56,25 @@ def event():
         return redirect(url_for('main'))
 
 
-@app.route('/myActivity')
+@app.route('/myActivity', methods=['GET', 'POST'])
 def myActivity():
     if 'username' in session:
-        return render_template('myActivity.html',
-         username = session.get('username'))
+        if request.method == 'POST':
+            sport = request.form['sport']
+            if sport == "gym":
+                gymname = request.form['trainplan']
+                inserttraining(session['username'], gymname)
+            else:
+                dist = request.form['dist']
+                hours = request.form['hours']
+                minutes = request.form['minutes']
+                try:
+                    time = int(hours) * 60 + int(minutes)
+                except:
+                    return Response("", status=500, mimetype='application/json')
+                insertactivity(session['username'], time, dist, sport)
+                return redirect(url_for('myActivity'))
+        return render_template('myActivity.html', username = session.get('username'), selectbest=sb)
     else:
         return redirect(url_for('main'))
 
