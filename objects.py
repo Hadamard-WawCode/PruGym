@@ -12,6 +12,10 @@ def get_object(id):
     cursor = db.cursor()
     res = cursor.execute(f"SELECT * FROM Obiekty WHERE id = {id}").fetchone()
     db.close()
+    if res[3] != '':
+        res = list(res)
+        res[3] = '(' + res[3] + ')'
+        res = tuple(res)
     return res
 
 def add_object(typ, nazwa, adres, dzielnica, lat, lon, opis, url_zdjecia):
