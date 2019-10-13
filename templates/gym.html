@@ -19,6 +19,9 @@
   <!-- Custom styles for this template -->
   <link href="{{ url_for('static',filename='css/one-page-wonder.min.css') }}" rel="stylesheet">
 
+  <!-- Timeline -->
+  <link href="{{ url_for('static',filename='css/gym_style.css') }}" rel="stylesheet">
+
    <!-- Fa-Fa -->
   <script src="https://kit.fontawesome.com/301b488078.js" crossorigin="anonymous"></script>
 
@@ -115,7 +118,19 @@
           <div class="p-5">
             <h2 style="color: #75407a" class="display-4">Wydarzenia</h2>
             <p>{{obiekty}}</p>
-            <p>{{eventy}}</p>
+            {{eventy}}
+       <ul class="timeline">
+        {% for event in eventy %}
+        <li>
+          <a target="_blank" style="color: #75407a" href="https://www.totoprayogo.com/#">{{event[0]}}</a>
+          <a style="color: #75407a" class="float-right">{{event[5]}}</a>
+          <p>{{event[1]}}</p>
+        </li>
+        {% endfor %}
+      </ul>
+            <div class="container mt-5 mb-5">
+      
+
           </div>
         </div>
       </div>
