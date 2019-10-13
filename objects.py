@@ -38,8 +38,8 @@ def addevent(nazwa,opis,user,location, date):
     cursor = db.cursor()
     sql="CREATE TABLE IF NOT EXISTS wydarzenia('id' INTEGER PRIMARY KEY AUTOINCREMENT,'nazwa' TEXT,'opis' TEXT,'user' TEXT,'location' TEXT, 'ilosc' INTEGER, 'data' TEXT);"
     cursor.execute(sql)
-    sql1="INSERT INTO wydarzenia(nazwa,opis,user,location, data) VALUES(?,?,?,?,?)"
-    cursor.execute(sql1, (nazwa,opis,user,location, date))
+    sql1="INSERT INTO wydarzenia(nazwa,opis,user,location, ilosc, data) VALUES(?,?,?,?,?,?)"
+    cursor.execute(sql1, (nazwa,opis,user,location, 1, date))
     db.commit()
     cursor.execute("SELECT MAX(id) FROM wydarzenia")
     sel=cursor.fetchone()
