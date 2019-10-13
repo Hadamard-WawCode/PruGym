@@ -151,7 +151,7 @@ function addMarker(type, lat, lng, id) {
     var dist = distance(lat, lng, "K");
 
     var marker = L.marker([lat, lng], {icon: type})
-    var data = {'name' : name};
+    var data = {'id' : id};
     marker.url = '/gym?'+encodeQueryData(data);
     marker.on('click', function(){
         window.location = (this.url);

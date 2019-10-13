@@ -1,6 +1,6 @@
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
-from objects import get_all_objects
+from objects import get_all_objects, get_object
 
 app = Flask(__name__)
 app.secret_key = '9je0jaj09jk9dkakdwjnjq'
@@ -18,6 +18,14 @@ def index():
         return render_template('index.html', obiekty = get_all_objects(), username = session.get('username'))
     else:
         return redirect(url_for('login'))
+
+@app.route('/gym', methods=['GET'])
+def gym():
+    if 'username' in session and request.method == 'GET':
+        obj_id = request.form['id']
+        return render_template('gym.html', obiekty = get_object(gym_id), username = session.get('username'))
+    else:
+        return redirect(url_for('main'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
