@@ -42,6 +42,8 @@ def addevent(nazwa,opis,user,location):
     cursor.execute("SELECT MAX(id) FROM wydarzenia")
     sel=cursor.fetchone()
     id=sel[0]
+    sql7="CREATE TABLE IF NOT EXISTS "+location+"('id');"
+    cursor.execute(sql7)
     sql2="INSERT INTO "+user+"_events(id) VALUES(?)"
     cursor.execute(sql2,(id,))
     cursor.execute("INSERT INTO "+location+"(id) VALUES(?)", (id,))
