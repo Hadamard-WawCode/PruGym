@@ -10,7 +10,7 @@ def addtrainingsql(username):
 
 def insertactivity(username, time, distance, type):
     print('?!!!!!!!!!!!!!', username, time, distance, type)
-    distance = float(distance)
+    distance = float(distance) * 1000
     if(type=="swim"):
         calories=distance*0.2
         pace=time*100/distance
