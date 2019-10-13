@@ -69,20 +69,30 @@
           <div class="p-5">
             <h2 class="display-4" style="color: #75407a">Dodaj trening</h2>
             <form action="" method="post">
-                <select class="form-control" name="sport" required>
-                    <option value="swim">Pływanie</option>
-                    <option value="run">Bieganie</option>
-                    <option value="bike">Kolarstwo</option>
+                <select id="sport" class="form-control" name="sport" onclick="displayMenu()" required>
+                    <option value="swim" onclick="displayMenu()">Pływanie</option>
+                    <option value="run" onclick="displayMenu()">Bieganie</option>
+                    <option value="bike" onclick="displayMenu()">Kolarstwo</option>
+                    <option value="gym" onclick="displayMenu()">Siłownia</option>
                 </select>
-                <h7>Odległość:</h7>
-                <input class="form-control" type="number" name="dist" min="0" max="200" step="0.01" placeholder="kilometry" required>
-                <h7>Czas:</h7> 
-                <div class="form-inline">
-                    <input class="form-control mb-2" type="number" name="hours" min="0" placeholder="godziny">
-                    <input class="form-control mb-2" type="number" name="minutes" min="0" max="59" placeholder="minuty">
+                <div id="gymsports" style="display: none;">
+                    <label for="trainplan"><h6>Plan treningowy: </h6></label>
+                    <select style="margin-bottom: 5px;" id="trainplan" class="form-control" name="plan" required>
+                        <option value="beginner">Początkujący</option>
+                        <option value="semi">Średniozaawansowany</option>
+                        <option value="pro">Zaawansowany</option>
+                    </select>
                 </div>
-                
-                <button class="btn-primary" type="reset"><i class="fas fa-redo"></i></button>
+                <div id="distsports" style="display: block">
+                    <label for="dist"><h6>Dystans: </h6></label>
+                    <input id="dist" class="form-control" type="number" name="dist" min="0" max="200" step="0.01" placeholder="kilometry" required>
+                    <label for="time"><h6>Czas: </h6></label>
+                    <div id="time" class="form-inline">
+                        <input class="form-control mb-2" type="number" name="hours" min="0" placeholder="godziny">
+                        <input class="form-control mb-2" type="number" name="minutes" min="0" max="59" placeholder="minuty">
+                    </div>
+                </div>
+                <button class="btn-primary" type="reset"  onclick="displayMenu()"   ><i class="fas fa-redo"></i></button>
                 <input class="btn-primary" type="submit" value="Dodaj"> 
             </form>
           </div>
@@ -105,6 +115,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static',filename='js/myAct.js') }}"></script>
 
 </body>
 
