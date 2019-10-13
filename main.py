@@ -1,3 +1,4 @@
+import os, os.path, random, hashlib, sys, json
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
 from objects import get_all_objects, get_object, addevent
@@ -31,7 +32,7 @@ def gym():
             print(eventName, eventDesc, eventDate, obj_id)
             addevent(eventName,eventDesc,session['username'],obj_id)
             return redirect('/gym?id='+obj_id)
-        return render_template('gym.html', obiekty = get_object(obj_id), username = session.get('username'))
+        return render_template('gym.html', obiekty = get_object(obj_id), username = session.get('username'), num=obj_id)
     else:
         return redirect(url_for('main'))
 
@@ -61,12 +62,22 @@ def login():
 
     return render_template('login.html', info = "")
 
-@app.route('/addPic')
+@app.route('/addPic', methods=['POST'])
 def addPic():
     if 'username' in session:
-        return render_template('addPic.html', username = session.get('username'))
-    else:
-        return redirect(url_for('main'))
+        names = []
+        for fkey in request.files:
+            file = request.files[fkey]
+            if file.filename == '':
+                continue
+            file.save('current')
+            data = open('current', 'rb').read()
+            digest = hashlib.md5()
+            digest.update(data)
+            names.append('static/paste/' + digest.hexdigest() + os.path.splitext(file.filename)[1])
+            os.rename('current', names[-1])
+        add_pictures(request.form.get('num'), names)
+    return redirect(url_for('main'))
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
