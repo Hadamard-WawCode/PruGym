@@ -1,6 +1,6 @@
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
-from objects import get_all_objects, get_object, get_stats
+from objects import get_all_objects, get_object
 from historia import *
 
 app = Flask(__name__)

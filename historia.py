@@ -65,3 +65,12 @@ def selectbest(username, type, which):
     db.commit()
     db.close()
     return ret0
+
+def get_stats(user):
+    db = sqlite3.connect("prugym.db")
+    cursor = db.cursor()
+    query = f"SELECT * FROM {user};"
+    print(query)
+    res = cursor.execute(query).fetchone()
+    db.close()
+    return res
