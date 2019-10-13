@@ -88,14 +88,17 @@ def wszystkieuzyt(user):
     return arr
 
 def wszystkieob(obiekt):
-    obiekt = "a" + obiekt
-    arr=[]
-    db = sqlite3.connect("prugym.db")
-    cursor = db.cursor()
-    cursor.execute("SELECT id FROM "+obiekt)
-    tab=cursor.fetchall()
-    for i in tab:
-        arr.append(i[0])
-    db.commit()
-    db.close()
-    return arr
+    try:
+        obiekt = "a" + obiekt
+        arr=[]
+        db = sqlite3.connect("prugym.db")
+        cursor = db.cursor()
+        cursor.execute("SELECT id FROM "+obiekt)
+        tab=cursor.fetchall()
+        for i in tab:
+            arr.append(i[0])
+        db.commit()
+        db.close()
+        return arr 
+    except:
+        return []
