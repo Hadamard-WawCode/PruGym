@@ -46,6 +46,9 @@
         <a class="nav-link" href="/">Mapa</a>
       </li>
       <li class="nav-item">
+          <a class="nav-link" href="/train">Plany treningowe</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/myActivity">Moja Aktywność</a>
       </li>
       <li class="nav-item">
@@ -79,7 +82,7 @@
             <h5>{{event[2]}}</h5>
             <br/>
             <p>{{event[1]}}</p>
-            {{event}}
+            <h4>Osoby biorące udział: {{event[4]}}</h4>
             <form enctype=multipart/form-data method="post">
               <p><input class="btn-primary" type="submit" value="Zapisz się"></p>
             </form>
