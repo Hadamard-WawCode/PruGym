@@ -108,6 +108,8 @@ def joinevent(id):
         db = sqlite3.connect("prugym.db")
         cursor = db.cursor()
         cursor.execute(f"UPDATE wydarzenia SET ilosc = ilosc + 1 WHERE id={id}")
+        db.commit()
+        db.close()
         return True 
     except:
         return False
