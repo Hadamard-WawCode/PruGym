@@ -5,7 +5,7 @@ def addactivitysql(username):
     return zm
 
 def addtrainingsql(username):
-    zm = "INSERT INTO "+username+"(activity, calories, type, time) VALUES(?,?,?,?)"
+    zm = "INSERT INTO "+username+"(activity, time, calories, type) VALUES(?,?,?,?)"
     return zm
 
 def insertactivity(username, time, distance, type):
