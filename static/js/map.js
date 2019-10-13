@@ -132,12 +132,19 @@ function distance(lat2, lon2, unit) {
       dist = dist * 60 * 1.1515
       if (unit=="K") { dist = dist * 1.609344 }
       if (unit=="N") { dist = dist * 0.8684 }
-      return dist.toFixed(2);
+      var res = "";
+      if (dist < 1) {
+          res = (dist * 1000).toFixed(0) + "m";
+      }
+      else {
+          res = dist.toFixed(2) + "km";
+      }
+      return res;
   }
 
 function addMarker(type, lat, lng, desc) {
     var dist = distance(lat, lng, "K");
-    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc + "\nOdległość: " + dist + "km").addTo(myMarkers);
+    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc + "\nOdległość: " + dist).addTo(myMarkers);
 }
 
 function myView() {
