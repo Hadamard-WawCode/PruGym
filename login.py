@@ -31,11 +31,17 @@ def createsql(username):
     zm = "CREATE TABLE IF NOT EXISTS "+username+"(activity TEXT,time INTEGER, calories INTEGER, type TEXT, distance REAL, pace REAL)"
     return zm
 
+def createeventsql(username):
+    zm = "CREATE TABLE IF NOT EXISTS "+username+"_events(id INTEGER)"
+    return zm
+
 def createuserdb(username):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     sql=createsql(username)
+    sql1=createeventsql(username)
     cursor.execute(sql)
+    cursor.execute(sql1)
     db.commit()
     db.close()
 

@@ -1,6 +1,6 @@
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify, session
 from login import signup_f, login_f
-from objects import get_all_objects, get_object
+from objects import get_all_objects, get_object, get_stats
 
 app = Flask(__name__)
 app.secret_key = '9je0jaj09jk9dkakdwjnjq'
@@ -59,6 +59,12 @@ def login():
 
     return render_template('login.html', info = "")
 
+@app.route('/stats')
+def stats():
+    if 'username' in session:
+        return render_template('stats.html', username = session.get('username'), stats=get_stats(session.get('username')))
+    else:
+        return redirect(url_for('main'))
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
