@@ -32,13 +32,13 @@ def add_photos(id, url_list_zdjec):
         return False
     return True
 
-def addevent(nazwa,opis,user,location):
+def addevent(nazwa,opis,user,location, date):
     location = "a" + location
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     sql="CREATE TABLE IF NOT EXISTS wydarzenia('id' INTEGER PRIMARY KEY AUTOINCREMENT,'nazwa' TEXT,'opis' TEXT,'user' TEXT,'location' TEXT, 'ilosc' INTEGER);"
     cursor.execute(sql)
-    sql1="INSERT INTO wydarzenia(nazwa,opis,user,location) VALUES(?,?,?,?)"
+    sql1="INSERT INTO wydarzenia(nazwa,opis,user,location, data) VALUES(?,?,?,?,?)"
     cursor.execute(sql1, (nazwa,opis,user,location))
     db.commit()
     cursor.execute("SELECT MAX(id) FROM wydarzenia")
@@ -59,7 +59,7 @@ def addevent(nazwa,opis,user,location):
 def infowyd(numer):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
-    cursor.execute("SELECT name FROM wydarzenia WHERE id=(?)", (numer,))
+    cursor.execute("SELECT nazwa FROM wydarzenia WHERE id=(?)", (numer,))
     name=cursor.fetchone()[0]
     cursor.execute("SELECT opis FROM wydarzenia WHERE id=(?)", (numer,))
     opis=cursor.fetchone()[0]
@@ -69,9 +69,11 @@ def infowyd(numer):
     location=cursor.fetchone()[0]
     cursor.execute("SELECT ilosc FROM wydarzenia WHERE id=(?)", (numer,))
     ilosc=cursor.fetchone()[0]
+    cursor.execute("SELECT data FROM wydarzenia WHERE id=(?)", (numer,))
+    data=cursor.fetchone()[0]
     db.commit()
     db.close()
-    return name,opis,user,location,ilosc
+    return (name,opis,user,location,ilosc, data)
 
 def wszystkieuzyt(user):
     arr=[]
