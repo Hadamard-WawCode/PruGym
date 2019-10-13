@@ -98,15 +98,16 @@ function show(filter){
 
 
 function addCurrentLocation(lat, lng){
-    mymap.setView([lat, lng], 16);
-
+    mylat = lat;
+    mylng = lng
+    mymap.setView([mylat, mylng], 16);
     L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=GGI0R7Kfcu3Y6cnYhFLB', {
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
         maxZoom: 20,    
         id: 'mapbox.streets',
     }).addTo(mymap);
-
-    var marker = L.marker([lat, lng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
+                 
+    var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
     show('Siłownia');
 }
 
@@ -133,7 +134,6 @@ function addMarker(type, lat, lng, id) {
 }
 
 function myView() {
-    mymap.panTo([mylat, mylng]);
-    mymap.setZoom(16);  
+    mymap.setView([mylat, mylng], 16);
 }
 
