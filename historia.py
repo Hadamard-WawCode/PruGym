@@ -81,9 +81,9 @@ def counttra(username, type):
     if(ret==None):
         return "No activities"
     ret0=ret[0]
-    return ret0
     db.commit()
     db.close()
+    return ret0
 
 def get_stats(user):
     db = sqlite3.connect("prugym.db")
