@@ -71,11 +71,11 @@ def counttra(username, type):
     db = sqlite3.connect("prugym.db")
     cursor = db.cursor()
     if(type=="beginner"):
-        sql="SELECT COUNT(type) WHERE type='beginner'"
+        sql="SELECT COUNT(type) FROM "+username+" WHERE type='beginner'"
     if(type=="semi"):
-        sql="SELECT COUNT(type) WHERE type='semi'"
+        sql="SELECT COUNT(type) FROM "+username+"  WHERE type='semi'"
     if(type=="pro"):
-        sql="SELECT SUM(type) WHERE type='pro'"
+        sql="SELECT SUM(type) FROM "+username+"  WHERE type='pro'"
     cursor.execute(sql)
     ret=cursor.fetchone()
     if(ret==None):
