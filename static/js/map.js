@@ -52,7 +52,7 @@ L.easyButton('fas fa-dumbbell', function(button, map){show('Siłownia')} ).addTo
 L.easyButton('fas fa-futbol', function(button, map){show('Boisko')} ).addTo(mymap);
 L.easyButton('fas fa-swimmer', function(button, map){show('Basen')} ).addTo(mymap);
 L.easyButton('fas fa-bicycle', function(button, map){show('Rowery')} ).addTo(mymap);
-L.easyButton('fas fa-tree', function(button, map){show('Park')} ).addTo(mymap);
+//L.easyButton('fas fa-tree', function(button, map){show('Park')} ).addTo(mymap);
 L.easyButton('fas fa-redo', function(button, map){show(null)} ).addTo(mymap);
 L.easyButton('fas fa-male', function(button, map){myView()} ).addTo(mymap);
 
@@ -98,7 +98,7 @@ function show(filter){
     myMarkers.addTo(mymap);  
 }
 
-show(null);
+
 
 
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -115,6 +115,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     }).addTo(mymap);
 
     var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
+    show('Siłownia');
 });
 
 function distance(lat2, lon2, unit) {
