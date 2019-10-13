@@ -67,11 +67,6 @@
     </div>
   </nav>
 
-  <!-- Map -->
-  <div class="container-fluid" id="mapid" style="min-height:650px"></div>
-
-  
-  
 
   <section>
     <div class="container">
@@ -83,8 +78,20 @@
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4" style="color: #75407a">Wybierz Siłownię</h2>
-            <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            <h2 class="display-4" style="color: #75407a">Dodaj trening</h2>
+            <form action="" method="post">
+                <select name="sport">
+                    <option value="swim">Pływanie</option>
+                    <option value="run">Bieganie</option>
+                    <option value="bike">Kolarstwo</option>
+                </select>
+                Odległość:
+                <input type="number" name="dist">km<br>
+                Czas:
+                <input type="time" name="time"><br>
+                <button type="reset"><i class="fas fa-redo"></i></button>
+                <input type="submit" value="Dodaj"> 
+            </form>
           </div>
         </div>
       </div>

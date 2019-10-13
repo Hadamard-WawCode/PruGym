@@ -56,40 +56,38 @@ L.easyButton('fas fa-bicycle', function(button, map){show('Rowery')} ).addTo(mym
 L.easyButton('fas fa-redo', function(button, map){show(null)} ).addTo(mymap);
 L.easyButton('fas fa-male', function(button, map){myView()} ).addTo(mymap);
 
-
 //Wypisywanie obiektow
 function show(filter){
         mymap.removeLayer(myMarkers);
         myMarkers = L.layerGroup();
         for(var i = 0; i < objects.length; i++) {
             var obj = objects[i];
-            var type = obj[0];
+            var type = obj[1];
 
             if(filter != null && type != filter){
                 continue;
             } else{
-                var name = obj[1];
-                var lat = obj[4];
-                var lng = obj[5];
-                var desc = "aa";
+                var id = obj[0];
+                var lat = obj[2];
+                var lng = obj[3];
                 switch (type) {
                     case 'Siłownia':
-                        addMarker(gym, lat, lng, desc)
+                        addMarker(gym, lat, lng, id)
                         break;
                     case 'Boisko':
-                        addMarker(pitch, lat, lng, desc)
+                        addMarker(pitch, lat, lng, id)
                         break;
                     case 'Rowery':
-                        addMarker(bike, lat, lng, desc)
+                        addMarker(bike, lat, lng, id)
                         break;
                     case 'Basen':
-                        addMarker(swim, lat, lng, desc)
+                        addMarker(swim, lat, lng, id)
                         break;
                     case 'Park':
-                        addMarker(forest, lat, lng, desc)
+                        addMarker(forest, lat, lng, id)
                         break;
                     default:
-                        addMarker(gym, lat, lng, desc)
+                        addMarker(gym, lat, lng, id)
                         break;
             }  
         }
@@ -99,14 +97,8 @@ function show(filter){
 }
 
 
-
-
-navigator.geolocation.getCurrentPosition(function(position) {
-
-    mylat = position.coords.latitude;
-    mylng = position.coords.longitude;
-
-    mymap.setView([mylat, mylng], 16);
+function addCurrentLocation(lat, lng){
+    mymap.setView([lat, lng], 16);
 
     L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=GGI0R7Kfcu3Y6cnYhFLB', {
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
@@ -114,9 +106,29 @@ navigator.geolocation.getCurrentPosition(function(position) {
         id: 'mapbox.streets',
     }).addTo(mymap);
 
-    var marker = L.marker([mylat, mylng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
+    var marker = L.marker([lat, lng], {icon: person}).bindPopup("Tu jesteś").addTo(mymap);
     show('Siłownia');
-});
+}
+
+navigator.geolocation.getCurrentPosition(position => addCurrentLocation(position.coords.latitude, position.coords.longitude),
+					 error => addCurrentLocation(52.219761, 21.002734));
+
+function distance(lat2, lon2, unit) {
+      var radlat1 = Math.PI * mylat/180
+      var radlat2 = Math.PI * lat2/180
+      var theta = mylng-lon2
+      var radtheta = Math.PI * theta/180
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+          dist = 1;
+      }
+      dist = Math.acos(dist)
+      dist = dist * 180/Math.PI
+      dist = dist * 60 * 1.1515
+      if (unit=="K") { dist = dist * 1.609344 }
+      if (unit=="N") { dist = dist * 0.8684 }
+      return dist
+  }
 
 function distance(lat2, lon2, unit) {
       var radlat1 = Math.PI * mylat/180
@@ -142,9 +154,23 @@ function distance(lat2, lon2, unit) {
       return res;
   }
 
-function addMarker(type, lat, lng, desc) {
+function encodeQueryData(data) {
+   const ret = [];
+   for (let d in data)
+     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+   return ret.join('&');
+}
+
+function addMarker(type, lat, lng, id) {
     var dist = distance(lat, lng, "K");
-    var marker = L.marker([lat, lng], {icon: type}).bindPopup(desc + "\nOdległość: " + dist).addTo(myMarkers);
+
+    var marker = L.marker([lat, lng], {icon: type})
+    var data = {'id' : id};
+    marker.url = '/gym?'+encodeQueryData(data);
+    marker.on('click', function(){
+        window.location = (this.url);
+    });
+    marker.addTo(myMarkers);
 }
 
 function myView() {
