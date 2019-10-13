@@ -22,8 +22,8 @@ def index():
 @app.route('/gym', methods=['GET'])
 def gym():
     if 'username' in session and request.method == 'GET':
-        obj_id = request.form['id']
-        return render_template('gym.html', obiekty = get_object(gym_id), username = session.get('username'))
+        obj_id = request.args.get('id')
+        return render_template('gym.html', obiekty = get_object(obj_id), username = session.get('username'))
     else:
         return redirect(url_for('main'))
 
